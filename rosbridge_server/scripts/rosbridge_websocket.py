@@ -42,7 +42,7 @@ from tornado.web import Application
 
 from rosbridge_server import RosbridgeWebSocket
 
-from std_msgs.msg import String, Int32MultiArray, Bool
+from std_msgs.msg import String, Int32MultiArray
 
 
 def shutdown_hook():
@@ -50,10 +50,10 @@ def shutdown_hook():
 
 if __name__ == "__main__":
 
-    rospy.Publisher('New_Step_Step', Int32MultiArray, queue_size=10)
-    rospy.Publisher('Pulse_Z', Int32MultiArray, queue_size=10)
+    rospy.Publisher('New_Step_XY', Int32MultiArray, queue_size=10)
+    rospy.Publisher('New_Step_Z', Int32MultiArray, queue_size=10)
     rospy.Publisher('Gripper_Pos', String, queue_size=10)
-    rospy.Publisher('Platform_Init', Bool, queue_size=1)
+    rospy.Publisher('Platform_Init', String, queue_size=10)
 
     rospy.init_node("rosbridge_websocket")
     rospy.on_shutdown(shutdown_hook)    # register shutdown hook to stop the server
