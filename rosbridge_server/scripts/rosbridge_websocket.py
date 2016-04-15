@@ -43,7 +43,7 @@ from tornado.web import Application
 from rosbridge_server import RosbridgeWebSocket
 
 from std_msgs.msg import String, Int32MultiArray
-
+from biobot_ros_msgs.msg import CoordinateMsgs
 
 def shutdown_hook():
     IOLoop.instance().stop()
@@ -54,6 +54,8 @@ if __name__ == "__main__":
     rospy.Publisher('New_Step_Z', Int32MultiArray, queue_size=10)
     rospy.Publisher('Gripper_Pos', String, queue_size=10)
     rospy.Publisher('Platform_Init', String, queue_size=10)
+    rospy.Publisher('Deck_Item', CoordinateMsgs, queue_size=10)
+    rospy.Publisher('Start_Protocol', String, queue_size=10)
 
     rospy.init_node("rosbridge_websocket")
     rospy.on_shutdown(shutdown_hook)    # register shutdown hook to stop the server
