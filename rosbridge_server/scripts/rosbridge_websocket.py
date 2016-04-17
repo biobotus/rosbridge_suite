@@ -42,18 +42,16 @@ from tornado.web import Application
 
 from rosbridge_server import RosbridgeWebSocket
 
-from std_msgs.msg import String, Int32MultiArray
+from std_msgs.msg import Bool, String, Int32MultiArray
 from biobot_ros_msgs.msg import CoordinateMsgs
 
 def shutdown_hook():
     IOLoop.instance().stop()
 
 if __name__ == "__main__":
-
-    rospy.Publisher('New_Step_XY', Int32MultiArray, queue_size=10)
-    rospy.Publisher('New_Step_Z', Int32MultiArray, queue_size=10)
-    rospy.Publisher('Gripper_Pos', String, queue_size=10)
-    rospy.Publisher('Platform_Init', String, queue_size=10)
+    rospy.Publisher('Global_Enable', Bool, queue_size=10)
+    rospy.Publisher('New_Step', String, queue_size=10)
+    rospy.Publisher('New_Step_Rel', String, queue_size=10)
     rospy.Publisher('Deck_Item', CoordinateMsgs, queue_size=10)
     rospy.Publisher('Start_Protocol', String, queue_size=10)
 
