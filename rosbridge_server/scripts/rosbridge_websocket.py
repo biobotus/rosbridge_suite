@@ -40,6 +40,9 @@ from tornado.ioloop import IOLoop
 from tornado.ioloop import PeriodicCallback
 from tornado.web import Application
 
+from std_msgs.msg import Bool, String
+from biobot_ros_msgs.msg import CoordinateMsgs, FloatList
+
 from rosbridge_server import RosbridgeWebSocket
 
 
@@ -47,6 +50,15 @@ def shutdown_hook():
     IOLoop.instance().stop()
 
 if __name__ == "__main__":
+    rospy.Publisher('Global_Enable', Bool, queue_size=10)
+    rospy.Publisher('New_Step', String, queue_size=10)
+    rospy.Publisher('New_Step_Rel', String, queue_size=10)
+    rospy.Publisher('Deck_Item', CoordinateMsgs, queue_size=10)
+    rospy.Publisher('Start_Protocol', String, queue_size=10)
+    rospy.Publisher('Error', String, queue_size=10)
+    rospy.Subscriber('Refresh_Pos', FloatList)
+    rospy.Subscriber('Step_Done', Bool)
+
     rospy.init_node("rosbridge_websocket")
     rospy.on_shutdown(shutdown_hook)    # register shutdown hook to stop the server
 
