@@ -56,8 +56,10 @@ if __name__ == "__main__":
     rospy.Publisher('Deck_Item', CoordinateMsgs, queue_size=10)
     rospy.Publisher('Start_Protocol', String, queue_size=10)
     rospy.Publisher('Error', String, queue_size=10)
+    rospy.Publisher('Pause', Bool, queue_size=10)
     rospy.Subscriber('Refresh_Pos', FloatList)
     rospy.Subscriber('Step_Done', Bool)
+    rospy.Subscriber('BioBot_Status', String)
 
     rospy.init_node("rosbridge_websocket")
     rospy.on_shutdown(shutdown_hook)    # register shutdown hook to stop the server
